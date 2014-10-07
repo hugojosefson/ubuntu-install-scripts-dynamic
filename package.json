@@ -1,0 +1,24 @@
+{
+  "name": "ubuntu-install-scripts",
+  "version": "0.0.1-alpha",
+  "description": "Install scripts for various things I like to install on a fresh Ubuntu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo no tests yet; exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic.git"
+  },
+  "keywords": [
+    "ubuntu",
+    "install",
+    "scripts"
+  ],
+  "author": "Hugo Josefson <hugo@josefson.org> (http://about.me/hugojosefson)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic/issues"
+  },
+  "homepage": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic"
+}
