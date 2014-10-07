@@ -4,7 +4,8 @@
   "description": "Install scripts for various things I like to install on a fresh Ubuntu",
   "main": "index.js",
   "scripts": {
-    "test": "echo no tests yet; exit 1"
+    "test": "npm install && npm run lint",
+    "lint": "eslint --config .eslintrc package.json index.js lib/"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic/issues"
   },
-  "homepage": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic"
+  "homepage": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic",
+  "devDependencies": {
+    "eslint": "^0.8.2"
+  }
 }
