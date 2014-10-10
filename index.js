@@ -27,9 +27,9 @@ console.log(parsed.options);
 
 var aptPackages = parsed.options['install-apt'];
 if (aptPackages) {
-    install(aptPackages).then(function () {
-        console.log('Yay! Installed', aptPackages);
-    }, function (reason) {
-        console.error('Failed to install', aptPackages, reason);
+    install(aptPackages).then(function (result) {
+        console.log('Yay! Installed', result);
+    }, function (result) {
+        console.error('Failed to install', result);
     });
 }
