@@ -7,7 +7,7 @@
     "docker-build": "docker build -t ubuntu-install-scripts-dynamic .",
     "docker-run": "docker run ubuntu-install-scripts-dynamic",
     "test": "npm install && npm run lint",
-    "lint": "eslint --config .eslintrc package.json index.js lib/"
+    "lint": "eslint --config .eslintrc index.js lib/"
   },
   "repository": {
     "type": "git",
@@ -25,13 +25,12 @@
   },
   "homepage": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic",
   "devDependencies": {
-    "eslint": "^0.8.2",
-    "tape": "^3.0.0"
+    "eslint": "^0.21.2"
   },
   "dependencies": {
     "argv": "0.0.2",
+    "bluebird": "^2.9.26",
     "debounce": "^1.0.0",
-    "es6-promise": "^1.0.0",
     "node-apt-get": "^0.1.1",
     "pkginfo": "^0.3.0"
   }
