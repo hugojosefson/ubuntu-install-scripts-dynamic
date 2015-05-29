@@ -1,24 +1,17 @@
-#!/usr/bin/env node
+#!./node_modules/.bin/babel-node
 'use strict';
 
 var argv = require('argv');
 
 var pkg = require('./lib/utils/pkg');
-var installAptPackages = require('./lib/install-apt-packages');
+var install = require('./lib/install');
 
 argv.info(pkg.description);
 argv.version(pkg.version);
 argv.option([
     {
         name: 'install',
-        short: 'i',
-        description: 'Install software package',
-        type: 'list,string'
-    },
-    {
-        name: 'install-apt',
-        short: 'a',
-        description: 'Install Ubuntu package via apt-get',
+        description: 'Install software packages or Ubuntu packages',
         type: 'list,string'
     }
 ]);
@@ -26,9 +19,9 @@ argv.option([
 var parsed = argv.run();
 console.log(parsed.options);
 
-var aptPackages = parsed.options['install-apt'];
-if (aptPackages) {
-    installAptPackages(aptPackages).then(function (result) {
+var names = parsed.options['install'];
+if (names) {
+    install(names).then(function (result) {
         console.log('Yay! Installed', result);
     }, function (result) {
         console.error('Failed to install', result);

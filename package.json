@@ -4,10 +4,11 @@
   "description": "Install scripts for various things I like to install on a fresh Ubuntu",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
+    "start": "./index.js",
     "docker-build": "docker build -t ubuntu-install-scripts-dynamic .",
     "docker-run": "docker run ubuntu-install-scripts-dynamic",
-    "test": "npm install && npm run lint",
+    "test": "npm run lint && npm run mocha",
+    "mocha": "mocha --compilers js:babel/register --recursive",
     "lint": "eslint --config .eslintrc index.js lib/"
   },
   "repository": {
@@ -26,12 +27,17 @@
   },
   "homepage": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic",
   "devDependencies": {
-    "eslint": "^0.21.2"
+    "babel-eslint": "^3.1.9",
+    "chai": "^2.3.0",
+    "eslint": "^0.21.2",
+    "mocha": "^2.2.5"
   },
   "dependencies": {
     "argv": "0.0.2",
+    "babel": "^5.4.7",
     "bluebird": "^2.9.26",
     "debounce": "^1.0.0",
+    "lodash": "^3.9.3",
     "node-apt-get": "^0.1.1",
     "pkginfo": "^0.3.0"
   }
