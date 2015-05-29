@@ -17,11 +17,12 @@ COPY package.json /root/app/
 RUN cd /root/app && npm install
 
 # Cache apt packages
-RUN apt-get install -y --download-only vim
+RUN apt-get install --download-only -y vim
+RUN apt-get install --download-only -y links
 
 COPY . /root/app
 
 RUN cd /root/app && npm test
 
 WORKDIR /root/app
-CMD ["./index.js", "--install=vim"]
+CMD ["./index.js", "vim", "links"]

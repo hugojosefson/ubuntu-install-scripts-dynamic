@@ -33,12 +33,12 @@
     "mocha": "^2.2.5"
   },
   "dependencies": {
-    "argv": "0.0.2",
     "babel": "^5.4.7",
     "bluebird": "^2.9.26",
     "debounce": "^1.0.0",
     "faithful-exec": "^0.1.0",
     "lodash": "^3.9.3",
+    "minimist": "^1.1.1",
     "node-apt-get": "^0.1.1",
     "pkginfo": "^0.3.0"
   }

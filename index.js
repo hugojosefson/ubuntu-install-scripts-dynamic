@@ -1,29 +1,17 @@
 #!./node_modules/.bin/babel-node
 'use strict';
 
-var argv = require('argv');
+var argv = require('minimist')(process.argv.slice(2));
 
-var pkg = require('./lib/utils/pkg');
 var install = require('./lib/install');
 
-argv.info(pkg.description);
-argv.version(pkg.version);
-argv.option([
-    {
-        name: 'install',
-        description: 'Install software packages or Ubuntu packages',
-        type: 'list,string'
-    }
-]);
-
-var parsed = argv.run();
-console.log(parsed.options);
-
-var names = parsed.options['install'];
-if (names) {
-    install(names).then(function (result) {
-        console.log('Yay! Installed', result);
+var names = argv._;
+if (names.length) {
+    install(names).then(function () {
+        console.log('Yay! Installed', names);
     }, function (result) {
         console.error('Failed to install', result);
     });
+} else {
+    console.log('Usage: ' + process.argv[1] + ' <package-or-script>...');
 }
