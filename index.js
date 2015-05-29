@@ -3,8 +3,8 @@
 
 var argv = require('argv');
 
-var pkg = require('./lib/pkg');
-var install = require('./lib/install');
+var pkg = require('./lib/utils/pkg');
+var installAptPackages = require('./lib/install-apt-packages');
 
 argv.info(pkg.description);
 argv.version(pkg.version);
@@ -28,7 +28,7 @@ console.log(parsed.options);
 
 var aptPackages = parsed.options['install-apt'];
 if (aptPackages) {
-    install(aptPackages).then(function (result) {
+    installAptPackages(aptPackages).then(function (result) {
         console.log('Yay! Installed', result);
     }, function (result) {
         console.error('Failed to install', result);
