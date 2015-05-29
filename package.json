@@ -4,6 +4,7 @@
   "description": "Install scripts for various things I like to install on a fresh Ubuntu",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "docker-build": "docker build -t ubuntu-install-scripts-dynamic .",
     "docker-run": "docker run ubuntu-install-scripts-dynamic",
     "test": "npm install && npm run lint",

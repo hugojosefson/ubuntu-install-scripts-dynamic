@@ -20,4 +20,4 @@ COPY . /root/app
 RUN cd /root/app && npm test
 
 WORKDIR /root/app
-CMD ["./index.js", "-a", "vim"]
+CMD ["node", ".", "-a", "vim"]
