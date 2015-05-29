@@ -11,9 +11,13 @@ RUN curl https://raw.githubusercontent.com/hugojosefson/find-node-or-install/mas
 RUN chmod +x /usr/local/bin/find-node-or-install /usr/local/bin/node /usr/local/bin/npm
 RUN node --version
 
+# Cache npm packages
 RUN mkdir -p /root/app
 COPY package.json /root/app/
 RUN cd /root/app && npm install
+
+# Cache apt packages
+RUN apt-get install -y --download-only vim
 
 COPY . /root/app
 
