@@ -7,7 +7,10 @@ var install = require('./lib/install');
 
 var names = argv._;
 if (names.length) {
-    install(names).then(function () {
+    install(names).then(function (results) {
+        if (argv.verbose) {
+            console.dir(results);
+        }
         console.log('Yay! Installed', names);
     }, function (result) {
         console.error('Failed to install', result);
