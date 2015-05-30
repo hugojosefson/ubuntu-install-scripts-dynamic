@@ -25,4 +25,4 @@ COPY . /root/app
 RUN cd /root/app && npm test
 
 WORKDIR /root/app
-CMD ["./index.js", "vim", "links", "disable-unity-shopping-scopes"]
+CMD ["./index.js", "vim", "links", "disable-unity-shopping-scopes", "enable-apt-canonical-partners-sources"]
