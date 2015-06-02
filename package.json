@@ -9,7 +9,7 @@
     "docker-run": "docker run ubuntu-install-scripts-dynamic",
     "test": "npm run lint && npm run mocha",
     "mocha": "mocha --compilers js:babel/register --recursive",
-    "lint": "eslint --config .eslintrc index.js lib/"
+    "lint": "eslint --config .eslintrc index.js lib install-scripts test"
   },
   "repository": {
     "type": "git",
