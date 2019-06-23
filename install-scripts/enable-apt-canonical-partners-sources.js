@@ -1,18 +1,17 @@
-'use strict';
+import _SCRIPT_NAME from '../lib/utils/script-name'
 
-var SCRIPT_NAME = require('../lib/utils/script-name')(__filename);
+import replaceInFile from '../lib/utils/replace-in-file'
+import isRoot from 'is-root'
+import rerunAsRoot from '../lib/utils/rerun-as-root'
 
-var replaceInFile = require('../lib/utils/replace-in-file');
-var mustBeRoot = require('../lib/utils/must-be-root');
+const SCRIPT_NAME = _SCRIPT_NAME(__filename)
 
-function enableAptCanonicalPartnersSources() {
-    return replaceInFile(
-        '/etc/apt/sources.list',
-        [
-            /# (deb.*?partner)/g,
-            '$1'
-        ]
-    ).then(() => SCRIPT_NAME);
-}
+const enableAptCanonicalPartnersSources = () => replaceInFile(
+  '/etc/apt/sources.list',
+  [
+    /# (deb.*?partner)/g,
+    '$1'
+  ]
+).then(() => SCRIPT_NAME)
 
-module.exports = mustBeRoot(enableAptCanonicalPartnersSources, SCRIPT_NAME);
+export default isRoot() ? enableAptCanonicalPartnersSources : rerunAsRoot.bind({}, SCRIPT_NAME)

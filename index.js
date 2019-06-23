@@ -1,20 +1,17 @@
-#!./node_modules/.bin/babel-node
-'use strict';
+import minimist from 'minimist'
+import install from './lib/install'
 
-var argv = require('minimist')(process.argv.slice(2));
-
-var install = require('./lib/install');
-
-var names = argv._;
+const argv = minimist(process.argv.slice(2))
+const names = argv._
 if (names.length) {
-    install(names).then(function (results) {
-        if (argv.verbose) {
-            console.dir(results);
-        }
-        console.log('Yay! Installed', names);
-    }, function (result) {
-        console.error('Failed to install', result);
-    });
+  install(names).then(function (results) {
+    if (argv.verbose) {
+      console.dir(results)
+    }
+    console.log('Yay! Installed', names)
+  }, function (result) {
+    console.error('Failed to install', result)
+  })
 } else {
-    console.log('Usage: ' + process.argv[1] + ' <package-or-script>...');
+  console.log('Usage: ' + process.argv[1] + ' <package-or-script>...')
 }

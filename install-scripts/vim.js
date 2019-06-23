@@ -1,15 +1,11 @@
-'use strict';
+import installAptPackages from '../lib/install-apt-packages'
+import ensureLineInFile from '../lib/utils/ensure-line-in-file'
+import homeFile from '../lib/utils/home-file'
 
-
-var installAptPackages = require('../lib/install-apt-packages');
-var ensureLineInFile = require('../lib/utils/ensure-line-in-file');
-var homeFile = require('../lib/utils/home-file');
-
-function vim() {
-    return installAptPackages('vim')
-        .then(function (result) {
-            return ensureLineInFile(homeFile('.bashrc'), 'export EDITOR=vim').then(() => result);
-        });
-}
-
-module.exports = vim;
+export default () => installAptPackages('vim')
+  .then(
+    result => ensureLineInFile(
+      homeFile('.bashrc'),
+      'export EDITOR=vim'
+    ).then(() => result)
+  )
