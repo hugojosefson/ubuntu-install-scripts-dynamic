@@ -1,5 +1,8 @@
-.git
-node_modules
-Dockerfile
-.gitignore
-.dockerignore
+/.idea/
+/node_modules/
+/npm-debug.log*
+*.swp
+
+/Dockerfile
+/.git/
+/.isolate-in-docker/
