@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.mjs",
     "docker-build": "docker build -t hugojosefson/ubuntu-install-scripts-dynamic .",
-    "docker-run": "docker run hugojosefson/ubuntu-install-scripts-dynamic",
+    "docker-run": "docker run --rm -it hugojosefson/ubuntu-install-scripts-dynamic",
     "lint": "prettier --write '{src,test}/**/*.{js,mjs,md}' './*.{js,mjs,md}'",
     "test": "npm-run-all lint mocha",
     "mocha": "mocha"

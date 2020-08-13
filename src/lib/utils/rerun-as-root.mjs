@@ -7,7 +7,7 @@ export default scriptName =>
     sudo(
       ['--preserve-env'].concat([
         './find-node-or-install/node',
-        './index.js',
+        './index.mjs',
         scriptName,
       ]),
       sudoOptions

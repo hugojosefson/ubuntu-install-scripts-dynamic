@@ -1,25 +1,23 @@
 FROM hugojosefson/popos:20.04
 
-RUN apt-get update && apt-get install -y aptitude && apt-get dist-upgrade --purge -y
-
-RUN aptitude install -y curl git
-COPY src/lib/find-node-or-install /usr/local/bin/
-RUN node --version
-RUN npm install -g npm@latest
-RUN npm install -g yarn@latest
-
-# Cache npm packages
-RUN mkdir -p /root/app
-COPY package.json yarn.lock /root/app/
-RUN cd /root/app && yarn install
+#COPY src/lib/find-node-or-install /usr/local/bin/
+#RUN node --version
+#RUN npm install -g npm@latest
+#RUN npm install -g yarn@latest
+#
+## Cache npm packages
+#RUN mkdir -p /app
+#COPY package.json yarn.lock /app/
+#RUN cd /app && yarn install
 
 # Cache apt packages
 RUN apt-get install --download-only -y vim
 RUN apt-get install --download-only -y links
 
-COPY . /root/app
+COPY . /app
 
-RUN cd /root/app && yarn test
+#RUN cd /app && yarn test
 
-WORKDIR /root/app
-CMD ["yarn", "start", "vim", "links", "disable-unity-shopping-scopes", "enable-apt-canonical-partners-sources"]
+WORKDIR /app
+RUN src/lib/find-node-or-install/yarn
+CMD ["src/lib/find-node-or-install/yarn", "start", "vim", "links"]
