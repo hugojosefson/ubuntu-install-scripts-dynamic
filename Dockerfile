@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM hugojosefson/popos:20.04
 
 RUN apt-get update && apt-get install -y aptitude && apt-get dist-upgrade --purge -y
 

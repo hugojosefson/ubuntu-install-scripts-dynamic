@@ -8,33 +8,50 @@
     "start": "node --experimental-modules --es-module-specifier-resolution=node index.js",
     "docker-build": "docker build -t ubuntu-install-scripts-dynamic .",
     "docker-run": "docker run ubuntu-install-scripts-dynamic",
-    "test": "run-s lint mocha",
-    "mocha": "mjs-mocha --es-module-specifier-resolution=node",
-    "lint": "standard | snazzy",
-    "lint-fix": "standard --fix | snazzy"
+    "lint": "prettier --write '{src,test}/**/*.{js,mjs,md}' './*.{js,mjs,md}'",
+    "test": "npm-run-all lint mocha",
+    "mocha": "mocha"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic.git"
-  },
+  "author": "Hugo Josefson <hugo@josefson.org> (https://www.hugojosefson.com/)",
+  "repository": "hugojosefson/ubuntu-install-scripts-dynamic",
+  "license": "MIT",
   "keywords": [
     "ubuntu",
     "install",
     "scripts"
   ],
-  "author": "Hugo Josefson <hugo@josefson.org> (http://about.me/hugojosefson)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic/issues"
   },
   "homepage": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic",
+  "mocha": {
+    "spec": "test/*test.mjs"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{mjs,js,md}": [
+      "yarn lint"
+    ]
+  },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mjs-mocha": "^3.0.0",
-    "mocha": "^7.1.1",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "mocha": "^8.1.1",
     "npm-run-all": "^4.1.5",
-    "snazzy": "^8.0.0",
-    "standard": "^14.3.3"
+    "prettier": "^2.0.5"
   },
   "dependencies": {
     "debounce": "^1.0.0",
@@ -44,5 +61,8 @@
     "lodash": "^4.17.19",
     "minimist": "^1.2.5",
     "sudo": "^1.0.3"
+  },
+  "engines": {
+    "node": ">=13.2.0"
   }
 }

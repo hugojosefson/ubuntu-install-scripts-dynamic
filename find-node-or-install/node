@@ -1,5 +1,9 @@
-#!/usr/bin/env bash
-executable="$(basename "${0}")"
-current_dir="$(dirname "${0}")"
-export PATH="$("${current_dir}"/find-node-or-install):$PATH"
-"${executable}" "$@"
+#!/bin/sh
+export PATH="$("$(dirname "$0")"/find-node-or-install):$PATH"
+
+cmd="$(basename "$0")"
+if ! command -v "${cmd}" > /dev/null; then
+  npm install -g "${cmd}" >&2
+fi
+
+exec "${cmd}" "$@"

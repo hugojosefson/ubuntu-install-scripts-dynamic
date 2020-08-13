@@ -8,10 +8,13 @@ Happy (re-)installing!
 
 ## Difference...
 
-...compared to [my other ubuntu-install-scripts repo](https://github.com/hugojosefson/ubuntu-install-scripts):
+...compared to
+[my other ubuntu-install-scripts repo](https://github.com/hugojosefson/ubuntu-install-scripts):
 
-Because Node.js programming comes so much more natural for me, than Bash programming, and because I enjoy it so much more, I plan to create a nice dynamic and faster implementation in Node.js here.
+This is a re-implementation in JavaScript. It will hopefully be more stable, and
+possibly easier to work with.
 
 ## TODO
 
-- Replace `__filename` with `import.meta.url`?
+- Use `aptdcon` instead of `apt-get` where possible.
+- Replace `__filename` with `import.meta.url`.
