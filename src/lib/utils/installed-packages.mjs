@@ -2,7 +2,7 @@ import exec from 'faithful-exec'
 import _ from 'lodash'
 
 /**
- * Returns a Promise for an object where keys are currently installed Ubuntu
+ * Promise for an object where keys are currently installed apt
  * packages, and values are true.
  */
 export default exec("dpkg -l|awk '/^ii/{print $2}'").then(result =>

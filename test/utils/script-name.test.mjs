@@ -6,19 +6,19 @@ const { expect } = chai
 
 describe('script-name', function () {
   ;[
-    ['/asd/asd/qwe.js', 'qwe'],
-    ['/asd/asd/qwe.mjs', 'qwe'],
-    ['/asd/asd/qwe.es6', 'qwe'],
-    ['/asd/asd/.js', '.js'],
-    ['/asd/asd/.mjs', '.mjs'],
-    ['/asd/asd/qwe', 'qwe'],
-    ['/asd/asd/qwe/index.js', 'qwe'],
-    ['/asd/asd/qwe/index.mjs', 'qwe'],
-    ['/asd/asd/qwe/index/index.js', 'index'],
-    ['/asd/asd/qwe/index/index.mjs', 'index'],
-  ].forEach(([filename, expected]) => {
-    it(filename + ' => ' + expected, () => {
-      expect(scriptName(filename)).to.equal(expected)
+    ['file:///asd/asd/qwe.js', 'qwe'],
+    ['file:///asd/asd/qwe.mjs', 'qwe'],
+    ['file:///asd/asd/qwe.es6', 'qwe'],
+    ['file:///asd/asd/.js', '.js'],
+    ['file:///asd/asd/.mjs', '.mjs'],
+    ['file:///asd/asd/qwe', 'qwe'],
+    ['file:///asd/asd/qwe/index.js', 'qwe'],
+    ['file:///asd/asd/qwe/index.mjs', 'qwe'],
+    ['file:///asd/asd/qwe/index/index.js', 'index'],
+    ['file:///asd/asd/qwe/index/index.mjs', 'index'],
+  ].forEach(([scriptUrl, expected]) => {
+    it(scriptUrl + ' => ' + expected, () => {
+      expect(scriptName(scriptUrl)).to.equal(expected)
     })
   })
 })
