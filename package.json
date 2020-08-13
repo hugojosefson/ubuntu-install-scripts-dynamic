@@ -10,6 +10,7 @@
     "docker-run": "docker run --rm -it hugojosefson/ubuntu-install-scripts-dynamic",
     "lint": "prettier --write '{src,test}/**/*.{js,mjs,md}' './*.{js,mjs,md}'",
     "test": "npm-run-all lint mocha",
+    "ci": "npm-run-all test docker-build docker-run",
     "mocha": "mocha"
   },
   "author": "Hugo Josefson <hugo@josefson.org> (https://www.hugojosefson.com/)",
