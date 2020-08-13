@@ -5,4 +5,5 @@
  * @param ending desired ending
  * @returns {String} string with desired ending
  */
-export default (string, ending) => string.endsWith(ending) ? `${string}` : `${string}${ending}`
+export default (string, ending) =>
+  string.endsWith(ending) ? `${string}` : `${string}${ending}`

@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/hugojosefson/ubuntu-install-scripts-dynamic",
   "mocha": {
-    "spec": "test/*test.mjs"
+    "spec": "test/**/*test.mjs"
   },
   "husky": {
     "hooks": {
