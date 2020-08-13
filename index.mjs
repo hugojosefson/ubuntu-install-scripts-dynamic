@@ -1,3 +1,10 @@
+#!/bin/sh
+/* 2>/dev/null
+export NODE_VERSION="$(cat "$(dirname "$0")/.nvmrc")"
+PATH="$("$(dirname "$0")"/src/lib/find-node-or-install/find-node-or-install):$PATH"
+exec node "$0" "$@"
+*/
+
 import minimist from 'minimist'
 import install from './src/lib/install.mjs'
 
@@ -14,5 +21,7 @@ if (names.length) {
     result => console.error('Failed to install', result)
   )
 } else {
-  console.log('Usage: ' + process.argv[1] + ' <package-or-script>...')
+  console.log(
+    'Usage: ' + process.argv[1] + ' <package-or-script> [<package-or-script>]*'
+  )
 }
