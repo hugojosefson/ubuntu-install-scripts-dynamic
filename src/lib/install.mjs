@@ -22,10 +22,16 @@ const getInstallFunction = (scriptName, subFunctionName = 'default') =>
 
 const installOne = async name => {
   const [scriptName, subFunctionName, ...extraArgs] = name.split(':')
-  const fn = await getInstallFunction(scriptName, subFunctionName)
-  if (typeof fn === 'function') {
-    return fn(...extraArgs)
-  } else {
-    return installAptPackages(name)
+  const mod = await Promise.resolve(
+    getInstallFunction(scriptName, subFunctionName)
+  )
+  if (Array.isArray(mod)) {
+    const names = mod.filter(a => typeof a === 'string')
+    return Promise.all(names.map(installOne))
   }
+  if (typeof mod === 'function') {
+    const fn = mod
+    return fn(...extraArgs)
+  }
+  return installAptPackages(name)
 }

@@ -6,14 +6,14 @@ import sudoOptions from './sudo-options.mjs'
 
 const aptGetBin = inPath.sync('apt-get')
 
-const aptGet = command => packages =>
+const aptGet = (command, ...args) => packages =>
   childProcess.spawn(
     aptGetBin,
-    [command, '-y'].concat(packages),
+    [command, ...args, ...packages],
     sudoOptions.spawnOptions
   )
 
-const sudoAptGet = command => packages =>
-  sudo(['apt-get', command, '-y'].concat(packages), sudoOptions)
+const sudoAptGet = (command, ...args) => packages =>
+  sudo(['apt-get', command, ...args, ...packages], sudoOptions)
 
 export default isRoot() ? aptGet : sudoAptGet
