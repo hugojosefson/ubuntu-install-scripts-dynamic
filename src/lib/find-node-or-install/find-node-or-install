@@ -9,7 +9,7 @@
 ##############################################################################
 
 set -e
-NVMRC=$(cat .nvmrc || true)
+NVMRC=$(cat .nvmrc 2>/dev/null || true)
 NODE_VERSION="${NODE_VERSION:-"${NVMRC:---lts}"}"
 
 die() {
