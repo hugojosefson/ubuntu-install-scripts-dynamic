@@ -1,15 +1,18 @@
 /**
- * Wraps promise returning function, so any calls to it are performed in sequence.
- * @param fn promise returning function
+ * All apt commands share the same sequence.
+ * @type {Promise<void>}
+ */
+let globalAptInProgress = Promise.resolve()
+
+/**
+ * Wraps function, so any calls to it are performed in sequence.
+ * @param fn function
  * @returns {Function} FIFO'ed promise returning function
  */
-export default fn => {
-  let inProgress = Promise.resolve()
-  return (...args) => {
-    const goAhead = () => {
-      inProgress = fn(...args)
-      return inProgress
-    }
-    return inProgress.then(goAhead, goAhead)
+export default fn => (...args) => {
+  const goAhead = () => {
+    globalAptInProgress = Promise.resolve(fn(...args))
+    return globalAptInProgress
   }
+  return globalAptInProgress.then(goAhead, goAhead)
 }
