@@ -36,4 +36,4 @@ RUN apt-get install --download-only -y links
 # Set up for docker-run
 COPY . /app/
 RUN src/lib/find-node-or-install/yarn install
-CMD ["src/lib/find-node-or-install/yarn", "start", "vim", "links"]
+CMD ["src/lib/find-node-or-install/yarn", "start", "vim", "links", "disable-unity-shopping-scopes"]

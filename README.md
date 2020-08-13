@@ -17,4 +17,3 @@ possibly easier to work with.
 ## TODO
 
 - Use `aptdcon` instead of `apt-get` where possible.
-- Replace `__filename` with `import.meta.url`.
