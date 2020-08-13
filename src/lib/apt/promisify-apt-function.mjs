@@ -27,7 +27,7 @@ export default (fn, context) => (...args) =>
       const result = {
         code: code,
         stdout: stdoutArray.join('\n'),
-        stderr: stderrArray.join('\n')
+        stderr: stderrArray.join('\n'),
       }
       if (code === 0) {
         resolve(result)

@@ -1,5 +1,5 @@
-import installScripts from '../install-scripts'
-import installAptPackages from './install-apt-packages'
+import installScripts from '../install-scripts/index.mjs'
+import installAptPackages from './install-apt-packages.mjs'
 
 /**
  * Installs one or several apt packages or software packages, returning a

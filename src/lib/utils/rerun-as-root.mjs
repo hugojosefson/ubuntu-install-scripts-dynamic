@@ -1,14 +1,14 @@
-import sudoOptions from '../apt/sudo-options'
-import promisifyAptFunction from '../apt/promisify-apt-function'
+import sudoOptions from '../apt/sudo-options.mjs'
+import promisifyAptFunction from '../apt/promisify-apt-function.mjs'
 import sudo from 'sudo'
 
 export default scriptName =>
-  promisifyAptFunction(
-    () => sudo(
+  promisifyAptFunction(() =>
+    sudo(
       ['--preserve-env'].concat([
         './find-node-or-install/node',
         './index.js',
-        scriptName
+        scriptName,
       ]),
       sudoOptions
     )

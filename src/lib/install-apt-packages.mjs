@@ -1,8 +1,8 @@
 import debounce from 'debounce'
 
-import defer from './utils/defer'
-import installedPackages from './utils/installed-packages'
-import apt from './apt'
+import defer from './utils/defer.mjs'
+import installedPackages from './utils/installed-packages.mjs'
+import apt from './apt/index.mjs'
 
 let waiting = []
 const installed = {}
@@ -15,7 +15,9 @@ const installPending = debounce(() => {
     if (waiting.length) {
       currentBatch = new Promise((resolve, reject) => {
         const aptPromise = apt.install(waiting)
-        waiting.forEach(name => aptPromise.then(installed[name].resolve, installed[name].reject))
+        waiting.forEach(name =>
+          aptPromise.then(installed[name].resolve, installed[name].reject)
+        )
         aptPromise.then(resolve, reject)
         waiting = []
       })

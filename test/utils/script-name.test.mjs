@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import chai from 'chai'
-import scriptName from '../../lib/utils/script-name'
+import scriptName from '../../src/lib/utils/script-name.mjs'
 
 const { expect } = chai
 

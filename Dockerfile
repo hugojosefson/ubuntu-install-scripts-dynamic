@@ -3,7 +3,7 @@ FROM hugojosefson/popos:20.04
 RUN apt-get update && apt-get install -y aptitude && apt-get dist-upgrade --purge -y
 
 RUN aptitude install -y curl git
-COPY find-node-or-install/* /usr/local/bin/
+COPY src/lib/find-node-or-install /usr/local/bin/
 RUN node --version
 RUN npm install -g npm@latest
 RUN npm install -g yarn@latest

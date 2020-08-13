@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import chai from 'chai'
-import replaceMultiple from '../../lib/utils/replace-multiple'
+import replaceMultiple from '../../src/lib/utils/replace-multiple.mjs'
 
 const { expect } = chai
 

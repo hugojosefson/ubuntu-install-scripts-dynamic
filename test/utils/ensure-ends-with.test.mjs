@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 import chai from 'chai'
-import ensure from '../../lib/utils/ensure-ends-with'
+import ensure from '../../src/lib/utils/ensure-ends-with.mjs'
 
 const { expect } = chai
 

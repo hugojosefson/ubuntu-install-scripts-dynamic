@@ -1,5 +1,5 @@
 import minimist from 'minimist'
-import install from './lib/install'
+import install from './src/lib/install.mjs'
 
 const argv = minimist(process.argv.slice(2))
 const names = argv._

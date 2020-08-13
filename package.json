@@ -2,12 +2,12 @@
   "name": "ubuntu-install-scripts",
   "version": "0.0.1-alpha",
   "description": "Install scripts for various things I like to install on a fresh Ubuntu",
-  "main": "index.js",
+  "main": "index.mjs",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-modules --es-module-specifier-resolution=node index.js",
-    "docker-build": "docker build -t ubuntu-install-scripts-dynamic .",
-    "docker-run": "docker run ubuntu-install-scripts-dynamic",
+    "start": "node index.mjs",
+    "docker-build": "docker build -t hugojosefson/ubuntu-install-scripts-dynamic .",
+    "docker-run": "docker run hugojosefson/ubuntu-install-scripts-dynamic",
     "lint": "prettier --write '{src,test}/**/*.{js,mjs,md}' './*.{js,mjs,md}'",
     "test": "npm-run-all lint mocha",
     "mocha": "mocha"
