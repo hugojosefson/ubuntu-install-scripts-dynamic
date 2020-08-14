@@ -12,8 +12,9 @@ Happy (re-)installing!
 [my other ubuntu-install-scripts repo](https://github.com/hugojosefson/ubuntu-install-scripts):
 
 This is a re-implementation in JavaScript. It will hopefully be more stable, and
-possibly easier to work with.
+possibly more fun to work with.
 
 ## TODO
 
+- Add files to `/usr/local/bin` instead of `~/bin`?
 - Use `aptdcon` instead of `apt-get` where possible.

@@ -12,8 +12,8 @@ export default fn => (...args) =>
     const stdout = []
     const stderr = []
 
-    proc.stdout.on('data', data => stdout.push(`${data}`.split('\n')))
-    proc.stderr.on('data', data => stderr.push(`${data}`.split('\n')))
+    proc.stdout.on('data', data => stdout.push(...`${data}`.trim().split('\n')))
+    proc.stderr.on('data', data => stderr.push(...`${data}`.trim().split('\n')))
 
     proc.on('close', code => {
       const result = {

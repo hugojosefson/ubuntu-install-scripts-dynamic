@@ -28,7 +28,6 @@ const interpretScriptName = scriptName => {
 }
 
 /**
- * TODO: sys/* should always be wrapped with mustBeRoot
  * @param scriptName
  * @returns {PromiseLike<any> | Promise<any>}
  */
@@ -74,9 +73,13 @@ const findResolution = fn => {
 }
 
 const installOne = async scriptName => {
-  const mod = await Promise.resolve(getInstallFunction(scriptName))
-  if (typeof mod === 'function') {
-    return mod()
+  try {
+    const mod = await Promise.resolve(getInstallFunction(scriptName))
+    if (typeof mod === 'function') {
+      return mod()
+    }
+    return installAptPackages(scriptName)
+  } catch (err) {
+    return Promise.reject({ scriptName, err })
   }
-  return installAptPackages(scriptName)
 }
