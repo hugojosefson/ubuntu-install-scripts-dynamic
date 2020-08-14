@@ -42,37 +42,25 @@ const getInstallFunction = scriptName => {
   ).then(
     mod => mod.default,
     async () => {
-      console.log(1, { dir, scriptName })
       if (dir) return undefined
-      console.log(2, { scriptName })
 
       const sysPromise = getInstallFunction(`sys/${scriptName}`)
-      console.log(2.1, { scriptName, sysPromise })
       const userPromise = getInstallFunction(`user/${scriptName}`)
-      console.log(2.2, { scriptName, userPromise })
       const settled = await Promise.allSettled([sysPromise, userPromise])
-      console.log(3, { scriptName, settled })
 
       const modules = settled
         .filter(({ status }) => status === 'fulfilled')
         .filter(({ value }) => typeof value === 'function')
         .map(({ value }) => value)
-      console.log(4, { scriptName, modules })
 
       if (modules.length === 0) return undefined
-      console.log(5, { scriptName })
 
       // first run sys, then user
       const seq = sequencify()
-      console.log(6, { scriptName, seq })
-      const reduction = modules.reduce(
+      return await modules.reduce(
         (acc, curr) => a => acc(a).then(() => seq(curr)()),
         a => Promise.resolve(a)
       )
-      console.log(7, { scriptName, reduction })
-      const awaitedReduction = await reduction
-      console.log(8, { scriptName, awaitedReduction })
-      return awaitedReduction
     }
   )
 }

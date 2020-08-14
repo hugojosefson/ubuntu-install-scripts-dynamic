@@ -47,10 +47,10 @@ const installAptPackage = name => {
     return new Promise((resolve, reject) => {
       installedPackages.then(packages => {
         if (packages[name]) {
-          console.log('Already installed apt package', name)
+          // already installed apt package
           resolve(name)
         } else {
-          console.log('Installing apt package', name)
+          // install apt package
           installed[name] = defer()
           waiting.push(name)
           installPending()
