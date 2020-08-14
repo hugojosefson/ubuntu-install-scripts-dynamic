@@ -5,7 +5,7 @@
   "main": "index.mjs",
   "type": "module",
   "scripts": {
-    "start": "node index.mjs",
+    "start": "node --trace-warnings --unhandled-rejections=strict index.mjs",
     "docker-build": "docker build -t hugojosefson/ubuntu-install-scripts-dynamic .",
     "docker-run": "docker run --rm -it hugojosefson/ubuntu-install-scripts-dynamic",
     "lint": "prettier --write '{src,test}/**/*.{js,mjs,md}' './*.{js,mjs,md}'",
