@@ -23,4 +23,5 @@ export default async () => {
   )
   await extraToolsPromise
   await makePromise
+  return Promise.all([extraToolsPromise, makePromise])
 }

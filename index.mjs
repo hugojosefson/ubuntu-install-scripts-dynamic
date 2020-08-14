@@ -11,7 +11,7 @@ if (names.length) {
   install(names).then(
     results => {
       if (argv.verbose) {
-        console.dir({ results })
+        console.log(JSON.stringify({ results }, null, 2))
       }
       console.log('Yay! Installed', names)
     },
