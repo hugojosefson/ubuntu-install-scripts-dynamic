@@ -1,9 +1,8 @@
-import ownUsrLocal from '../sys/own-usr-local.mjs'
 import { run } from '../../lib/run.mjs'
+import ownUsrLocal from '../sys/own-usr-local.mjs'
 
 export default async () => {
   const usrLocalPromise = ownUsrLocal()
-  const homeBinPromise = run({ command: 'mkdir -p ~/bin' })
 
   const tmp = await run({ command: 'mktemp -d' })
   await run({
@@ -12,10 +11,10 @@ export default async () => {
   })
 
   const cwd = `${tmp}/tabbed`
-  const extraToolsPromise = homeBinPromise.then(() =>
+  const extraToolsPromise = usrLocalPromise.then(() =>
     run({
       options: { cwd },
-      command: 'cp extra-tools/* ~/bin/',
+      command: 'cp extra-tools/* /usr/local/bin/',
     })
   )
   const makePromise = usrLocalPromise.then(() =>

@@ -16,5 +16,4 @@ possibly more fun to work with.
 
 ## TODO
 
-- Add files to `/usr/local/bin` instead of `~/bin`?
 - Use `aptdcon` instead of `apt-get` where possible.
