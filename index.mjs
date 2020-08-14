@@ -21,7 +21,8 @@ if (names.length) {
     result => console.error('Failed to install', result)
   )
 } else {
-  console.log(
+  console.error(
     'Usage: ' + process.argv[1] + ' <package-or-script> [<package-or-script>]*'
   )
+  process.exit(2)
 }
