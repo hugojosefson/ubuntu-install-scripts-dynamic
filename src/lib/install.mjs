@@ -1,6 +1,5 @@
 import installAptPackages from './install-apt-packages.mjs'
 import ensureEndsWith from './utils/ensure-ends-with.mjs'
-import sequencify from './apt/sequencify.mjs'
 
 /**
  * Installs one or several apt packages or software packages, returning a
@@ -43,10 +42,10 @@ const getInstallFunction = scriptName => {
     async () => {
       if (dir) return undefined
 
+      // find named module(s)
       const sysPromise = getInstallFunction(`sys/${scriptName}`)
       const userPromise = getInstallFunction(`user/${scriptName}`)
       const settled = await Promise.allSettled([sysPromise, userPromise])
-
       const modules = settled
         .filter(({ status }) => status === 'fulfilled')
         .filter(({ value }) => typeof value === 'function')
@@ -54,12 +53,12 @@ const getInstallFunction = scriptName => {
 
       if (modules.length === 0) return undefined
 
-      // first run sys, then user
-      const seq = sequencify()
-      return await modules.reduce(
-        (acc, curr) => a => acc(a).then(() => seq(curr)()),
-        a => Promise.resolve(a)
-      )
+      // run modules in order; first sys, then user
+      return async () =>
+        modules.reduce(async (results, fn) => {
+          const result = await fn()
+          return [...(await results), result]
+        }, [])
     }
   )
 }
