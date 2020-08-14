@@ -1,16 +1,20 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-const naïveScriptName = scriptPath =>
-  path.basename(scriptPath, path.extname(scriptPath))
-
 export default scriptUrl => {
   const scriptPath = fileURLToPath(scriptUrl)
+  const ext = path.extname(scriptPath)
 
-  const scriptName = naïveScriptName(scriptPath)
-  if (scriptName === 'index') {
-    return path.basename(path.dirname(scriptPath))
+  const parts = scriptPath.split('/')
+  const last = path.basename(parts.pop(), ext)
+  if (path.basename(last, ext) !== 'index') {
+    parts.push(last)
   }
 
-  return scriptName
+  const baseIndex = parts.indexOf('install-scripts')
+  if (baseIndex === -1) {
+    throw new Error(`Could not find 'install-scripts' in '${scriptPath}'`)
+  }
+
+  return parts.slice(baseIndex + 1).join('/')
 }
