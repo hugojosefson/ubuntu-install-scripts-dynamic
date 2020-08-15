@@ -1,25 +1,17 @@
-import { run } from '../../lib/run.mjs'
+import run from '../../lib/run.mjs'
 import ownUsrLocal from '../sys/own-usr-local.mjs'
 
 export default async () => {
   const usrLocalPromise = ownUsrLocal()
 
-  const tmp = await run({ command: 'mktemp -d' })
-  await run({
-    options: { cwd: tmp },
-    command: 'git clone https://github.com/hugojosefson/tabbed',
-  })
+  const tmp = await run('mktemp -d')
+  await run('git clone https://github.com/hugojosefson/tabbed', { cwd: tmp })
 
   const cwd = `${tmp}/tabbed`
   const extraToolsPromise = usrLocalPromise.then(() =>
-    run({
-      options: { cwd },
-      command: 'cp extra-tools/* /usr/local/bin/',
-    })
+    run('cp extra-tools/* /usr/local/bin/', { cwd })
   )
-  const makePromise = usrLocalPromise.then(() =>
-    run({ options: { cwd }, command: 'make install' })
-  )
+  const makePromise = usrLocalPromise.then(() => run('make install', { cwd }))
   await extraToolsPromise
   await makePromise
   return Promise.all([extraToolsPromise, makePromise])
