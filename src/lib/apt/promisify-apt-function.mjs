@@ -9,17 +9,17 @@
 export default fn => (...args) =>
   new Promise((resolve, reject) => {
     const proc = fn(...args)
-    const stdout = []
-    const stderr = []
+    const stdoutChunks = []
+    const stderrChunks = []
 
-    proc.stdout.on('data', data => stdout.push(...`${data}`.trim().split('\n')))
-    proc.stderr.on('data', data => stderr.push(...`${data}`.trim().split('\n')))
+    proc.stdout.on('data', data => stdoutChunks.push(`${data}`))
+    proc.stderr.on('data', data => stderrChunks.push(`${data}`))
 
     proc.on('close', code => {
       const result = {
         code,
-        stdout,
-        stderr,
+        stdout: stdoutChunks.join('').split('\n'),
+        stderr: stderrChunks.join('').split('\n'),
       }
       if (code === 0) {
         resolve(result)
