@@ -1,8 +1,10 @@
 import debounce from 'debounce'
+import { install } from './apt/index.mjs'
+import download from './download.mjs'
+import run from './run.mjs'
 
 import defer from './utils/defer.mjs'
 import installedPackages from './utils/installed-packages.mjs'
-import { install } from './apt/index.mjs'
 
 let waiting = []
 const installed = {}
@@ -37,7 +39,7 @@ const installPending = debounce(() => {
  *
  * @returns {Promise} Promise for array of result objects, or rejected with single result object.
  */
-const installAptPackages = (...packageNames) =>
+export default (...packageNames) =>
   Promise.all(packageNames.flat().map(installAptPackage))
 
 const installAptPackage = name => {
@@ -61,4 +63,10 @@ const installAptPackage = name => {
   }
 }
 
-export default installAptPackages
+export const installDebUrls = (...urls) => Promise.all(urls.map(installDebUrl))
+
+const installDebFile = async debFilename =>
+  installAptPackage('gdebi').then(() =>
+    run(`gdebi --non-interactive "${debFilename}"`)
+  )
+const installDebUrl = url => download(url).then(installDebFile)
