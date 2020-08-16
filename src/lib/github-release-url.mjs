@@ -3,7 +3,11 @@ import run from './run.mjs'
 
 export default async (
   repo,
-  test = url => /linux/.test(url) && /amd64/.test(url) && /\.deb$/.test(url)
+  expectedFileExtension = 'deb',
+  test = url =>
+    /linux/.test(url) &&
+    /amd64/.test(url) &&
+    url.endsWith('.' + expectedFileExtension)
 ) => {
   await installAptPackages('curl')
   return JSON.parse(
