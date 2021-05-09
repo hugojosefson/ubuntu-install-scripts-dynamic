@@ -41,7 +41,7 @@
     "faithful-exec": "^0.1.0",
     "inpath": "^1.0.2",
     "is-root": "^2.1.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "minimist": "^1.2.5",
     "sudo": "^1.0.3"
   }
